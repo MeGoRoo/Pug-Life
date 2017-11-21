@@ -1,0 +1,152 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://src/movement.gd" type="Script" id=1]
+
+[node name="Spatial" type="Spatial"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Area 2" type="Area" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+input/ray_pickable = false
+input/capture_on_drag = false
+shape_count = 0
+space_override = 0
+gravity_point = false
+gravity_distance_scale = 0.0
+gravity_vec = Vector3( 0, -1, 0 )
+gravity = 9.8
+linear_damp = 0.1
+angular_damp = 1.0
+priority = 0.0
+monitoring = true
+monitorable = true
+collision/layers = 1
+collision/mask = 1
+
+[node name="KinematicBody 2" type="KinematicBody" parent="Area 2"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+input/ray_pickable = true
+input/capture_on_drag = false
+shape_count = 0
+collision/layers = 1
+collision/mask = 1
+collide_with/static = true
+collide_with/kinematic = true
+collide_with/rigid = true
+collide_with/character = true
+collision/margin = 0.001
+
+[node name="TestCube" type="TestCube" parent="Area 2/KinematicBody 2"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.06898 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = 1
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+script/script = ExtResource( 1 )
+
+[node name="Camera" type="Camera" parent="Area 2/KinematicBody 2/TestCube"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 0.954714, 0.297524, 0, -0.297524, 0.954714, 0, 2.79417, 4.61148 )
+projection = 0
+fov = 75.0
+near = 0.1
+far = 100.0
+keep_aspect = 1
+current = false
+visible_layers = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+
+[node name="SpotLight" type="SpotLight" parent="Area 2/KinematicBody 2/TestCube"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55829, -1.36863 )
+layers = 1
+params/enabled = true
+params/editor_only = false
+params/bake_mode = 0
+params/energy = 1.0
+colors/diffuse = Color( 1, 1, 1, 1 )
+colors/specular = Color( 1, 1, 1, 1 )
+shadow/shadow = false
+shadow/darkening = 0.0
+shadow/z_offset = 0.05
+shadow/z_slope_scale = 0.0
+shadow/esm_multiplier = 60.0
+shadow/blur_passes = 1.0
+projector = null
+operator = 0
+params/radius = 37.3353
+params/attenuation = 1.0
+params/spot_angle = 15.6176
+params/spot_attenuation = 1.0
+
+[node name="Area" type="Area" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+input/ray_pickable = false
+input/capture_on_drag = false
+shape_count = 0
+space_override = 0
+gravity_point = false
+gravity_distance_scale = 0.0
+gravity_vec = Vector3( 0, -1, 0 )
+gravity = 9.8
+linear_damp = 0.1
+angular_damp = 1.0
+priority = 0.0
+monitoring = true
+monitorable = false
+collision/layers = 1
+collision/mask = 1
+
+[node name="KinematicBody" type="KinematicBody" parent="Area"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+input/ray_pickable = true
+input/capture_on_drag = false
+shape_count = 0
+collision/layers = 1
+collision/mask = 1
+collide_with/static = true
+collide_with/kinematic = true
+collide_with/rigid = true
+collide_with/character = true
+collision/margin = 0.001
+
+[node name="TestCube" type="TestCube" parent="Area/KinematicBody"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = 1
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+
+
