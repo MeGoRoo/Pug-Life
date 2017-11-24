@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://src/movement.gd" type="Script" id=1]
+[ext_resource path="res://city.msh" type="Mesh" id=2]
 
 [node name="Spatial" type="Spatial"]
 
@@ -87,7 +88,7 @@ colors/diffuse = Color( 1, 1, 1, 1 )
 colors/specular = Color( 1, 1, 1, 1 )
 shadow/shadow = false
 shadow/darkening = 0.0
-shadow/z_offset = 0.05
+shadow/z_offset = 0.0
 shadow/z_slope_scale = 0.0
 shadow/esm_multiplier = 60.0
 shadow/blur_passes = 1.0
@@ -95,7 +96,7 @@ projector = null
 operator = 0
 params/radius = 37.3353
 params/attenuation = 1.0
-params/spot_angle = 15.6176
+params/spot_angle = 70.1
 params/spot_attenuation = 1.0
 
 [node name="Area" type="Area" parent="."]
@@ -148,5 +149,27 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 3.00967, 0, 0, 0, 3.00967, 0, 0, 0, 3.00967, 0, -1.73393, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = 1
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+mesh/mesh = ExtResource( 2 )
+mesh/skeleton = NodePath("..")
+material/0 = null
 
 
