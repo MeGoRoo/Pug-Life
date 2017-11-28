@@ -11,7 +11,11 @@ func _ready():
 	set_process(true)
 	
 func _process(delta):
-	if Input.is_action_pressed("move_forward"):
+	if Input.is_action_pressed("jump"):
+		for x in range(0, 10):
+			translate(Vector3(0, 0.5, 0))
+		
+	elif Input.is_action_pressed("move_forward"):
 		speed = -8
 	elif Input.is_action_pressed("move_back"):
 		speed = 8
@@ -22,3 +26,6 @@ func _process(delta):
 	else:
 		speed = 0
 	translate(Vector3(0,0,delta * speed))
+	
+	while not self.get_node("RayCast").is_colliding():
+		translate(Vector3(0, 0.5, 0))
