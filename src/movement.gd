@@ -27,5 +27,7 @@ func _process(delta):
 		speed = 0
 	translate(Vector3(0,0,delta * speed))
 	
-	while not self.get_node("RayCast").is_colliding():
-		translate(Vector3(0, 0.5, 0))
+#	if not self.get_node("RayCast").is_colliding():
+#		translate(Vector3(0, -0.5, 0))
+#	else:
+#		pass
