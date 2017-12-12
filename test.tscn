@@ -1,49 +1,14 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://src/esc-close.gd" type="Script" id=1]
-[ext_resource path="res://models/island.msh" type="Mesh" id=2]
-[ext_resource path="res://city.msh" type="Mesh" id=3]
+[ext_resource path="res://models/pug.scn" type="PackedScene" id=2]
+[ext_resource path="res://src/movement.gd" type="Script" id=3]
+[ext_resource path="res://models/island.msh" type="Mesh" id=4]
+[ext_resource path="res://city.msh" type="Mesh" id=5]
 
 [sub_resource type="BoxShape" id=1]
 
 extents = Vector3( 1, 1, 1 )
-
-[sub_resource type="GDScript" id=2]
-
-script/source = "extends TestCube
-
-var speed = 0
-# class member variables go here, for example:
-# var a = 2
-# var b = \"textvar\"
-
-func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	set_process(true)
-	
-func _process(delta):
-	if Input.is_action_pressed(\"jump\"):
-		for x in range(0, 10):
-			translate(Vector3(0, 0.5, 0))
-		
-	elif Input.is_action_pressed(\"move_forward\"):
-		speed = -8
-	elif Input.is_action_pressed(\"move_back\"):
-		speed = 8
-	elif Input.is_action_pressed(\"move_left\"):
-		self.rotate_y(-0.0625)
-	elif Input.is_action_pressed(\"move_right\"):
-		self.rotate_y(0.0625)
-	else:
-		speed = 0
-	translate(Vector3(0,0,delta * speed))
-	
-	if not self.get_node(\"RayCast\").is_colliding():
-		translate(Vector3(0, -0.5, 0))
-	else:
-		pass
-"
 
 [sub_resource type="BoxShape" id=3]
 
@@ -76,38 +41,21 @@ monitorable = true
 collision/layers = 1
 collision/mask = 1
 
-[node name="dog" type="TestCube" parent="Area 2"]
+[node name="CollisionShape" type="CollisionShape" parent="Area 2"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-layers = 1
-geometry/visible = true
-geometry/material_override = null
-geometry/cast_shadow = 1
-geometry/receive_shadows = true
-geometry/range_begin = 0.0
-geometry/range_end = 0.0
-geometry/extra_cull_margin = 0.0
-geometry/billboard = false
-geometry/billboard_y = false
-geometry/depth_scale = false
-geometry/visible_in_all_rooms = false
-geometry/use_baked_light = false
-geometry/baked_light_tex_id = 0
-script/script = SubResource( 2 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
 
-[node name="RayCast" type="RayCast" parent="Area 2/dog"]
+[node name="pug" parent="Area 2/CollisionShape" instance=ExtResource( 2 )]
+
+script/script = ExtResource( 3 )
+
+[node name="Camera" type="Camera" parent="Area 2/CollisionShape/pug"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 63.5535, 0, 0, 0, 63.5535, 0, 0, 0, 63.5535, 0, -1.13976, 0 )
-enabled = true
-cast_to = Vector3( 0, -0.01, 0 )
-layer_mask = 1
-type_mask = 15
-
-[node name="Camera" type="Camera" parent="Area 2/dog"]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 0.954714, 0.297524, 0, -0.297524, 0.954714, 0, 2.79417, 4.61148 )
+transform/local = Transform( -0.999998, 0.00065577, -0.00210428, -0.000137751, 0.934253, 0.35661, 0.00219978, 0.356609, -0.934251, 0, 2.35331, -3.49517 )
 projection = 0
 fov = 75.0
 near = 0.1
@@ -118,37 +66,6 @@ visible_layers = 1048575
 environment = null
 h_offset = 0.0
 v_offset = 0.0
-
-[node name="SpotLight" type="SpotLight" parent="Area 2/dog"]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55829, -1.36863 )
-layers = 1
-params/enabled = true
-params/editor_only = false
-params/bake_mode = 0
-params/energy = 1.0
-colors/diffuse = Color( 1, 1, 1, 1 )
-colors/specular = Color( 1, 1, 1, 1 )
-shadow/shadow = false
-shadow/darkening = 0.0
-shadow/z_offset = 0.0
-shadow/z_slope_scale = 0.0
-shadow/esm_multiplier = 60.0
-shadow/blur_passes = 1.0
-projector = null
-operator = 0
-params/radius = 37.3353
-params/attenuation = 1.0
-params/spot_angle = 70.1
-params/spot_attenuation = 1.0
-
-[node name="CollisionShape" type="CollisionShape" parent="Area 2"]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-shape = SubResource( 1 )
-trigger = false
-_update_shape_index = 0
 
 [node name="Area" type="Area" parent="Area 2"]
 
@@ -192,7 +109,7 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
-mesh/mesh = ExtResource( 2 )
+mesh/mesh = ExtResource( 4 )
 mesh/skeleton = NodePath("..")
 material/0 = null
 
@@ -214,7 +131,7 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
-mesh/mesh = ExtResource( 3 )
+mesh/mesh = ExtResource( 5 )
 mesh/skeleton = NodePath("..")
 material/0 = null
 
@@ -276,5 +193,29 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, -0.451376, 0.892334, 0, -0.892334, -0.451376, 0, 84.4885, 0 )
+layers = 1
+params/enabled = true
+params/editor_only = false
+params/bake_mode = 0
+params/energy = 1.0
+colors/diffuse = Color( 1, 1, 1, 1 )
+colors/specular = Color( 1, 1, 1, 1 )
+shadow/shadow = false
+shadow/darkening = 0.0
+shadow/z_offset = 0.05
+shadow/z_slope_scale = 0.0
+shadow/esm_multiplier = 60.0
+shadow/blur_passes = 1.0
+projector = null
+operator = 0
+shadow/mode = 0
+shadow/max_distance = 0.0
+shadow/split_weight = 0.5
+shadow/zoffset_scale = 2.0
 
 
